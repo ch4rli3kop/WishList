@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>home</p>
+    {% if not isLogin %}
+    <input type="button" value="Sign In" onClick="location.href='/login'">
+    <input type="button" value="Register" onClick="location.href='/register'">
+    {% else %}
+    <input type="button" value="Log Out" onClick="location.href='/logout'">
+    {% endif %}
+
+    <div>
+    <h1>Life</h1>
+    {% for note in notes %}
+        {% if note['category'] == 0 %}
+            <li>
+                {{ note['summary'] }}
+                {{ note['detail'] }}
+            </li>
+        {% endif %}
+    {% endfor %}
+    <input type="text" name="summary0">
+    <input type="text" name="detail0">
+    </div>
+    
+    <div>
+    <h1>Year</h1>
+    {% for note in notes %}
+        {% if note['category'] == 1 %}
+            <li>
+                {{ note['summary'] }}
+                {{ note['detail'] }}
+            </li>
+        {% endif %}
+    {% endfor %}    
+    <input type="text" name="summary1">
+    <input type="text" name="detail1">
+    </div>
+
+    <div>
+    <h1>Month</h1>
+    {% for note in notes %}
+        {% if note['category'] == 2 %}
+            <li>
+                {{ note['summary'] }}
+                {{ note['detail'] }}
+            </li>
+        {% endif %}
+    {% endfor %}  
+    <input type="text" name="summary2">
+    <input type="text" name="detail2">
+    </div>
+    
+    <div>
+    <h1>Week</h1>
+    {% for note in notes %}
+        {% if note['category'] == 3 %}
+            <li>
+                {{ note['summary'] }}
+                {{ note['detail'] }}
+            </li>
+        {% endif %}
+    {% endfor %}  
+    <input type="text" name="summary3">
+    <input type="text" name="detail3">
+    </div>
+    
+    <div>
+    <h1>Today!</h1>
+    {% for note in notes %}
+        {% if note['category'] == 4 %}
+            <li>
+                {{ note['summary'] }}
+                {{ note['detail'] }}
+            </li>
+        {% endif %}
+    {% endfor %}
+    <form method="post" action="{{ url_for('update', id=4) }}">  
+        <input type="text" name="summary4">
+        <input type="text" name="detail4">
+        <input type="submit" value="add">
+    </form>
+    </div>
+</body>
+</html>
