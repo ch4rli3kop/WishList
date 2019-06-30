@@ -1,0 +1,63 @@
+{% block content %}
+<article>
+    <div class="part" id="part0" onClick="swap(0)">
+    <h1 class="category">Life</h1>
+    {% for note in notes %}
+        {% if note['category'] == 0 %}
+            <li>
+                {{ note['summary'] }}
+                <!-- {{ note['detail'] }} -->
+            </li>
+        {% endif %}
+    {% endfor %}
+    </div>
+    
+    <div class="part" id="part1" onClick="swap(1)">
+    <h1 class="category">Year</h1>
+    {% for note in notes %}
+        {% if note['category'] == 1 %}
+            <li>
+                {{ note['summary'] }}
+                <!-- {{ note['detail'] }} -->
+            </li>
+        {% endif %}
+    {% endfor %}    
+    </div>
+
+    <div class="part" id="part2" onClick="swap(2)">
+    <h1 class="category">Month</h1>
+    {% for note in notes %}
+        {% if note['category'] == 2 %}
+            <li>
+                {{ note['summary'] }}
+                <!-- {{ note['detail'] }} -->
+            </li>
+        {% endif %}
+    {% endfor %}  
+    </div>
+    
+    <div class="part" id="part3" onClick="swap(3)">
+    <h1 class="category">Week</h1>
+    {% for note in notes %}
+        {% if note['category'] == 3 %}
+            <li>
+                {{ note['summary'] }}
+                <!-- {{ note['detail'] }} -->
+            </li>
+        {% endif %}
+    {% endfor %}  
+    </div>
+
+    <div class="part" id="part4" onClick="swap(4)" style="display:none">
+        <h1 class="category">Today!</h1>
+        {% for note in notes %}
+            {% if note['category'] == 4 %}
+                <li>
+                    {{ note['summary'] }}
+                    {{ note['detail'] }}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}

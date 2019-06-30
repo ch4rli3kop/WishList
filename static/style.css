@@ -1,22 +1,29 @@
 html {
-
+    background-color: #2f3542;
 }
 
 header {
-    background-color: #78e08f;
+    /* background-color: #7bed9f; */
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 h1 {
     font-size: 40px;
     color: whitesmoke;
     margin-top: 20px;
-    justify-content: center;
+    cursor: pointer;
+}
+
+h1.Main {
+    border: 5px solid #a4b0be;
+    padding: 15px 200px 15px 200px;
+    margin-right: 20px;
 }
 
 h1.category {
-    margin-top: 30px;
+    margin: 30px 0px 0px 30px;
 }
 
 article {
@@ -26,22 +33,52 @@ article {
 
 div.part {
     /* justify-content: center; */
-    align-items: center;
+    /* align-items: center; */
     display: flex;
     flex-direction: column;
     width: 20%;
     height: 270px;
-    border: 1px solid black;
+    border: 3px dashed #a4b0be;
     margin-left: 15px;
+    color: whitesmoke;
+}
+
+ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+button.check {
+    height: 20px;
+    width: 25px;
+    font-size: 15px;
+    font-weight: bolder;
+    color: green;
+    text-align: center;
+    cursor: pointer;
+}
+
+span.note_font {
+    font-size: 20px;
 }
 
 div.main {
     width: 90%;
     margin: 20px 20px 20px 20px;
+    color: whitesmoke;
 }
 
 h1.main_category {
     font-size: 50px;
+}
+
+span.main {
+    font-size: 25px;
+}
+
+p.main {
+    font-size: 20px;
+    margin-left: 50px;
 }
 
 div.add {
@@ -49,7 +86,7 @@ div.add {
 }
 
 footer {
-    width: 90%;
-    border: 1px solid black;
-    
+    width: 875px;
+    border: 3px dashed #a4b0be;
+    margin: 15px 15px 15px 15px;
 }

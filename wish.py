@@ -34,8 +34,8 @@ def home():
     if session.get('logged_in'):
         resp_note = Note.query.filter_by(user_id=session.get('user_id')).all()
         print('return note test')
-        # print(dir(resp_note[0]))
-
+        print(dir(resp_note[0]))
+        # print(resp_note[0])
         return render_template('home.html', notes=resp_note, isLogin=True)
 
     print('Dummy Context!')
@@ -91,6 +91,16 @@ def update(id):
         db.session.add(new_note)
         db.session.commit()
         return redirect(url_for('home'))
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    note = Note.query.filter_by(user_id=session['user_id'], id=id).first()
+    if not note is None:
+        print(note)
+        db.session.delete(note)
+        db.session.commit()
+    print('delete' + str(id))
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     db.create_all()

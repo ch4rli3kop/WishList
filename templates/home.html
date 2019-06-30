@@ -9,142 +9,199 @@
 </head>
 <body>
     <header>
-        <h1>My WishList</h1>
+        <h1 class="Main">My WishList</h1>
         <div>
         {% if not isLogin %}
-        <input type="button" value="Sign In" onClick="location.href='/login'">
-        <input type="button" value="Register" onClick="location.href='/register'">
+        <button onClick="location.href='/login'">Sign In</button>
+        <button onClick="location.href='/register'">Register</button>
         {% else %}
-        <input type="button" value="Log Out" onClick="location.href='/logout'">
+        <button onClick="location.href='/logout'">Log Out</button>
         {% endif %}
         </div>
     </header>
 
     <article>
-    <div class="part" id="part0" onClick="swap(0)">
-    <h1 class="category">Life</h1>
-    {% for note in notes %}
-        {% if note['category'] == 0 %}
-            <li>
-                {{ note['summary'] }}
-                <!-- {{ note['detail'] }} -->
-            </li>
-        {% endif %}
-    {% endfor %}
-    </div>
-    
-    <div class="part" id="part1" onClick="swap(1)">
-    <h1 class="category">Year</h1>
-    {% for note in notes %}
-        {% if note['category'] == 1 %}
-            <li>
-                {{ note['summary'] }}
-                <!-- {{ note['detail'] }} -->
-            </li>
-        {% endif %}
-    {% endfor %}    
-    </div>
-
-    <div class="part" id="part2" onClick="swap(2)">
-    <h1 class="category">Month</h1>
-    {% for note in notes %}
-        {% if note['category'] == 2 %}
-            <li>
-                {{ note['summary'] }}
-                <!-- {{ note['detail'] }} -->
-            </li>
-        {% endif %}
-    {% endfor %}  
-    </div>
-    
-    <div class="part" id="part3" onClick="swap(3)">
-    <h1 class="category">Week</h1>
-    {% for note in notes %}
-        {% if note['category'] == 3 %}
-            <li>
-                {{ note['summary'] }}
-                <!-- {{ note['detail'] }} -->
-            </li>
-        {% endif %}
-    {% endfor %}  
-    </div>
-
-    <div class="part" id="part4" onClick="swap(4)" style="display:none">
-        <h1 class="category">Today!</h1>
+        <div class="part" id="part0">
+        <h1 class="category" onClick="swap(0)">Life</h1>
+        <ul>
         {% for note in notes %}
-            {% if note['category'] == 4 %}
+            {% if note['category'] == 0 %}
                 <li>
-                    {{ note['summary'] }}
-                    {{ note['detail'] }}
+                    <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                    <span class="note_font">
+                        {{ note['summary'] }}
+                    </span>
                 </li>
             {% endif %}
         {% endfor %}
-    </div>
+        </ul>    
+        </div>
+        
+        <div class="part" id="part1">
+        <h1 class="category" onClick="swap(1)">Year</h1>
+        <ul>
+        {% for note in notes %}
+            {% if note['category'] == 1 %}
+                <li>
+                    <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                    <span class="note_font">
+                        {{ note['summary'] }}
+                    </span>                
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>    
+        </div>
+    
+        <div class="part" id="part2">
+        <h1 class="category" onClick="swap(2)">Month</h1>
+        <ul>
+        {% for note in notes %}
+            {% if note['category'] == 2 %}
+                <li>
+                    <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                    <span class="note_font">
+                        {{ note['summary'] }}
+                    </span>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>  
+        </div>
+        
+        <div class="part" id="part3">
+        <h1 class="category" onClick="swap(3)">Week</h1>
+        <ul>
+        {% for note in notes %}
+            {% if note['category'] == 3 %}
+                <li>
+                    <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                    <span class="note_font">
+                        {{ note['summary'] }}
+                    </span>
+                </li>
+            {% endif %}
+        {% endfor %}  
+        </ul>    
+        </div>
+    
+        <div class="part" id="part4" style="display:none">
+            <h1 class="category" onClick="swap(4)">Today!</h1>
+            <ul>
+            {% for note in notes %}
+                {% if note['category'] == 4 %}
+                    <li>
+                        <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                        <span class="note_font">
+                            {{ note['summary'] }}
+                        </span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
     </article>
 
 
     <footer>
-    <div class="main" id="main0" onClick="swap(0)" style="display:none">
-    <h1 class="main_category">Life!</h1>
-    {% for note in notes %}
-        {% if note['category'] == 0 %}
-            <li>
-                {{ note['summary'] }}
-                {{ note['detail'] }}
-            </li>
-        {% endif %}
-    {% endfor %}
+    <div class="main" id="main0" style="display:none">
+        <h1 class="main_category">Life!</h1>
+        <ul>
+            {% for note in notes %}
+                {% if note['category'] == 0 %}
+                    <li>
+                        <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                        <span class="main">
+                            {{ note['summary'] }}
+                        </span>
+                        <p class="main">
+                            {{ note['detail'] }}
+                        </p>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>    
-    <div class="main" id="main1" onClick="swap(1)" style="display:none">
-    <h1 class="main_category">Year!</h1>
-    {% for note in notes %}
-        {% if note['category'] == 1 %}
-            <li>
-                {{ note['summary'] }}
-                {{ note['detail'] }}
-            </li>
-        {% endif %}
-    {% endfor %}
+    <div class="main" id="main1" style="display:none">
+        <h1 class="main_category">Year!</h1>
+        <ul>
+            {% for note in notes %}
+                {% if note['category'] == 1 %}
+                    <li>
+                        <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                        <span class="main">
+                            {{ note['summary'] }}
+                        </span>
+                        <p class="main">
+                            {{ note['detail'] }}
+                        </p>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>
-    <div class="main" id="main2" onClick="swap(2)" style="display:none">
-    <h1 class="main_category">Month!</h1>
-    {% for note in notes %}
-        {% if note['category'] == 2 %}
-            <li>
-                {{ note['summary'] }}
-                {{ note['detail'] }}
-            </li>
-        {% endif %}
-    {% endfor %}
+    <div class="main" id="main2" style="display:none">
+        <h1 class="main_category">Month!</h1>
+        <ul>
+            {% for note in notes %}
+                {% if note['category'] == 2 %}
+                    <li>
+                        <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                        <span class="main">
+                            {{ note['summary'] }}
+                        </span>
+                        <p class="main">
+                            {{ note['detail'] }}
+                        </p>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>
-    <div class="main" id="main3" onClick="swap(3)" style="display:none">
-    <h1 class="main_category">Week!</h1>
-    {% for note in notes %}
-        {% if note['category'] == 3 %}
-            <li>
-                {{ note['summary'] }}
-                {{ note['detail'] }}
-            </li>
-        {% endif %}
-    {% endfor %}
+    <div class="main" id="main3" style="display:none">
+        <h1 class="main_category">Week!</h1>
+        <ul>
+                {% for note in notes %}
+                    {% if note['category'] == 3 %}
+                        <li>
+                            <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                            <span class="main">
+                                {{ note['summary'] }}
+                            </span>
+                            <p class="main">
+                                {{ note['detail'] }}
+                            </p>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
     </div>
 
-    <div class="main" id="main4" onClick="swap(4)">
-    <h1 class="main_category">Today!</h1>
-    {% for note in notes %}
-        {% if note['category'] == 4 %}
-            <li>
-                {{ note['summary'] }}
-                {{ note['detail'] }}
-            </li>
-        {% endif %}
-    {% endfor %}
+    <div class="main" id="main4" style="display:block">
+       <h1 class="main_category">Today!</h1>
+       <ul>
+            {% for note in notes %}
+                {% if note['category'] == 4 %}
+                    <li>
+                        <button class="check" onClick="check_click({{ note['id'] }})">✔</button>
+                        <span class="main">
+                            {{ note['summary'] }}
+                        </span>
+                        <p class="main">
+                            {{ note['detail'] }}
+                        </p>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul> 
     </div>
     
     <div class="add">
         <form name="addSchedule" method="post" action="{{ url_for('update', id=4) }}">  
+            <label for="summary">Summary</label>
             <input type="text" class="" name="summary">
-            <input type="text" name="detail">
+            <label for="detail">Detail</label>
+            <input type="text" class="" name="detail">
             <input type="submit" value="add">
         </form>
     </div>
@@ -176,6 +233,12 @@
         addForm.action = addForm.action.substring(0, addForm.action.length-1) + order;
         console.log(addForm.action);
     }
+
+    function check_click(id){
+        console.log('check'+id)
+        location.href = "/delete/"+(id)
+    }
     </script>
 </body>
 </html>
+<!-- 현재 제작 중인 테스트 사이트이므로 저장한 사용자의 데이터를 온전히 보장할 수 없습니다. -->
