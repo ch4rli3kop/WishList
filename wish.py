@@ -80,8 +80,16 @@ def update(id):
     if request.method == 'POST':
         print('add request')
         print(dir(request))
-        print(request.form['summary'+str(id)])
-        print(request.form['detail'+str(id)])
+        print(request.form['summary'])
+        print(request.form['detail'])
+        new_note = Note(
+            summary = request.form['summary'],
+            detail = request.form['detail'],
+            category = id,
+            user_id = session['user_id']
+        )
+        db.session.add(new_note)
+        db.session.commit()
         return redirect(url_for('home'))
 
 if __name__ == '__main__':
